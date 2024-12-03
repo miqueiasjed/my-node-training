@@ -1,22 +1,10 @@
 import {salvar, deletar, pegarDados, persistirDados} from "./Banco.js";
+import { finaliza, menu } from "./interface.js";
 
-// console.log(pegarDados())
+const itemsMenu = [" Adicionar ", " Editar ", " Deletar ", " Ver Todos ", " Persistir ", " Sair "];
 
-// salvar("Miqueias");
-// salvar("Talita");
-// salvar("João");
-// salvar("Pedro");
+const selecionado = await menu(itemsMenu);
 
-// console.log(pegarDados())
+console.log(selecionado);
 
-deletar(3);
-deletar(4);
-deletar(5);
-
-console.log(pegarDados())
-console.log("---------------------------");
-salvar("teste",0);
-
-console.log(pegarDados())
-
-persistirDados();
+finaliza();
