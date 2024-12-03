@@ -9,7 +9,32 @@ export async function menu(itens){
   }
 
   const opcaoSelecionada = await term.singleLineMenu(itens, options).promise;
-  return opcaoSelecionada;
+  return opcaoSelecionada.selectedText;
+}
+
+export async function menuSelecaoUsuario(itens){
+  let options = {
+    style: term.inverse,
+    selectedStyle: term.white.bgGray
+  }
+
+  const selecionada = await term.singleColumnMenu(itens, options).promise;
+  const id = selecionada.selectedText.split("->")[1].trim();
+  return id;
+}
+
+export async function ler(enunciado){
+  term(`${enunciado}\n\n`);
+  const foiLido = await term.inputField().promise;
+  return foiLido;
+}
+
+export function textoVerde(texto){
+  term.green(`\n\n ${texto}`);
+}
+
+export function textoAzul(texto){
+  term.blue(`\n\n ${texto}`);
 }
 
 export function finaliza(){

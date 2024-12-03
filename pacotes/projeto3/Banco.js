@@ -1,9 +1,7 @@
 import fs from "fs";
+import {v4 as uuidv4} from "uuid";
 
 let dadosManipulaveis = _carregarValores(); //formato {nome,id}
-let ultimoIdRegistrado = dadosManipulaveis[dadosManipulaveis.length -1]?.id ?? -1;
-
-let idGlobal = ultimoIdRegistrado + 1;
 
 export function persistirDados(){
   const dadosJSON = JSON.stringify(dadosManipulaveis, null, 4);
@@ -21,8 +19,8 @@ export function salvar(nome, id){
   if(indice >= 0){
     dadosManipulaveis[indice].nome = nome;
   }else{
-    dadosManipulaveis.push({nome, id:idGlobal});
-    idGlobal++;
+    const idUnico = uuidv4();
+    dadosManipulaveis.push({nome, id:idUnico});
   }
 }
 
